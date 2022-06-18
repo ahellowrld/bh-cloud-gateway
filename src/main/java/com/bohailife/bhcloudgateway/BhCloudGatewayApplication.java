@@ -1,13 +1,13 @@
-package com.bohailife.bhcloudgetaway;
+package com.bohailife.bhcloudgateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BhCloudGetawayApplication {
+public class BhCloudGatewayApplication {
 	
 	public static void main (String[] args) {
-		SpringApplication.run (BhCloudGetawayApplication.class, args);
+		SpringApplication.run (BhCloudGatewayApplication.class, args);
 	}
 	
 }

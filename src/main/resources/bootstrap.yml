@@ -1,0 +1,61 @@
+# Nacos帮助文档: https://nacos.io/zh-cn/docs/concepts.html
+# Nacos认证信息
+
+#dubbo:
+#  cloud:
+#    subscribed-services: bh-cloud-gateway
+#  protocol:
+#    id: dubbo
+#    name: dubbo
+#    port: -1
+#  scan:
+#    base-packages: com.bohailife.bhcloudgateway
+spring:
+  application:
+    name: bh-cloud-gateway
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      discovery:
+        locator:
+#          开启以服务id去注册中心上获取转发地址
+          enabled: true
+      routes:
+        - id: newrevisit
+          url: lb://newrevisit
+          predicates:
+            - Path=/healthy/**
+    nacos:
+      discovery:
+        namespace: f9beda33-b041-4590-bbac-77e4b8653c58
+        server-addr: 10.104.0.208:28999
+        username: nacos
+        password: nacos
+      config:
+        contextPath: /nacos
+        password: nacos
+        username: nacos
+        #dat配置对应  Nacos 中dat 环境
+        namespace: f9beda33-b041-4590-bbac-77e4b8653c58
+        server-addr: 10.104.0.208:28999
+        enabled: true
+        file-extension: yml
+#        开启自动刷新
+        refresh-enabled: true
+
+
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 192.168.120.91:8080
+        port: 871
+#        心跳时间
+        heartbeat-interval-ms: 5000ms
+      log:
+        dir: /home/revisit/sentinel/log
+
+logging:
+  config: classpath:logback-spring.xml
+
+
